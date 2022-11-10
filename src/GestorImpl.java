@@ -4,9 +4,29 @@ import java.util.Queue;
 
 public class GestorImpl implements Gestor{
 
+    public GestorImpl(){
+        this.users = new HashMap<String, User>();
+    }
+
     List<Product> products;
     Queue<Order> orders;
     HashMap<String, User> users;
+
+    @Override
+    public void addUser(String idUser, String name) {
+
+        this.users.put(idUser, new User(idUser, name));
+    }
+
+    public User getUser(String idUser){
+        User user = this.users.get(idUser);
+        return user;
+    }
+
+    @Override
+    public void addProduct(String name, String description, double prize) {
+        this.products.add(new Product(name, description, prize));
+    }
 
     @Override
     public List<Product> productsByPrize() {
